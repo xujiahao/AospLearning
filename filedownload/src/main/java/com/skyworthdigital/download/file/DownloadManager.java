@@ -85,7 +85,7 @@ public class DownloadManager{
             start = i * step;
             end = (i + 1) * step - 1;
             if (i == MAX_THREAD_NUM - 1){
-                end = len;
+                end = len - 1;
                 finalCallback = callback;
             }
             mExecutor.execute(new DownloadTask(url, start, end, finalCallback));

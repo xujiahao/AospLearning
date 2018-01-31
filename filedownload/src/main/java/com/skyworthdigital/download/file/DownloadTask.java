@@ -1,5 +1,7 @@
 package com.skyworthdigital.download.file;
 
+import android.os.Process;
+
 import com.skyworthdigital.download.http.DownloadCallback;
 import com.skyworthdigital.download.http.HttpManager;
 
@@ -31,6 +33,7 @@ public class DownloadTask implements Runnable {
 
     @Override
     public void run() {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         File file = FileStorageManager.getInstance().getFileByUrl(mUrl);
         Response response = HttpManager.getInstance().syncRequestByRange(mUrl, mStart, mEnd);
         if (response != null && response.isSuccessful()){
